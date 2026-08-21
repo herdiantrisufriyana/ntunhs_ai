@@ -27,6 +27,7 @@ Course repository for **Innovative Applications of Artificial Intelligence** (18
 | 15 | Capstone project presentation | — |
 | 16 | Open-book exam practice | — |
 | 17 | Open-book exam | — |
+| 18 | Course review and feedback | — |
 
 ## Assessment
 
