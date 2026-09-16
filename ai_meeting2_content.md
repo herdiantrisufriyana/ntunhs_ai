@@ -32,11 +32,11 @@ National Taiwan University of Nursing and Health Sciences
 
 **Architecture diagrams:**
 
-![CNN architecture](images/cnn_architecture.png)
+<img src="images/cnn_architecture.png" alt="CNN architecture" width="600">
 
-![RNN/LSTM architecture](images/rnn_lstm_architecture.webp)
+<img src="images/rnn_lstm_architecture.webp" alt="RNN/LSTM architecture" width="600">
 
-![Transformer architecture](images/transformer_architecture.png)
+<img src="images/transformer_architecture.png" alt="Transformer architecture" width="600">
 
 ---
 
