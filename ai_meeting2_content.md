@@ -30,6 +30,14 @@ National Taiwan University of Nursing and Health Sciences
 | **Sequence models** | Recurrent neural networks (RNNs) | Sequential data | Predicting next vital sign from ICU monitoring |
 | **Transformers** | Self-attention mechanism | Language understanding and generation | ChatGPT, Claude, Gemini |
 
+**Architecture diagrams:**
+
+![CNN architecture](images/cnn_architecture.png)
+
+![RNN/LSTM architecture](images/rnn_lstm_architecture.webp)
+
+![Transformer architecture](images/transformer_architecture.png)
+
 ---
 
 ## What Makes Transformers Special?
