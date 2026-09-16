@@ -141,7 +141,7 @@ Before transformers, language models processed words one by one in sequence (lef
 1. **Always verify** — Cross-check AI outputs against authoritative sources
 2. **Ask for sources** — Request specific citations, then verify they exist
 3. **Use retrieval-augmented generation (RAG)** — Tools that search a database first, then generate answers based on retrieved documents
-4. **Prefer specialized tools** — A medical AI tool with curated data is more reliable than a general-purpose chatbot for clinical questions. However, a 2026 Nature Medicine study found that frontier general-purpose LLMs (GPT-5.2, Gemini 3.1 Pro, Claude Opus 4.6) outperformed specialized clinical AI tools (OpenEvidence, UpToDate Expert AI) across medical benchmarks and real physician queries, suggesting this assumption may no longer hold (Goh et al., Nat Med, 2026; doi:10.1038/s41591-026-04431-5)
+4. **Prefer specialized tools** — A medical AI tool with curated data is more reliable than a general-purpose chatbot for clinical questions. However, a 2026 Nature Medicine study found that frontier general-purpose LLMs (GPT-5.2, Gemini 3.1 Pro, Claude Opus 4.6) outperformed specialized clinical AI tools (OpenEvidence, UpToDate Expert AI) across medical benchmarks and real physician queries, suggesting this assumption may no longer hold ([Goh et al., Nat Med, 2026](https://doi.org/10.1038/s41591-026-04431-5))
 
 > **Can you guess:**
 >
