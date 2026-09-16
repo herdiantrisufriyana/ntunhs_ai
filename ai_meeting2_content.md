@@ -34,7 +34,7 @@ National Taiwan University of Nursing and Health Sciences
 
 <img src="images/cnn_architecture.png" alt="CNN architecture" width="600">
 
-<img src="images/rnn_lstm_architecture.webp" alt="RNN/LSTM architecture" width="600">
+<img src="images/rnn_lstm_architecture.png" alt="RNN/LSTM architecture" width="600">
 
 <img src="images/transformer_architecture.png" alt="Transformer architecture" width="600">
 
