@@ -118,9 +118,9 @@ Before transformers, language models processed words one by one in sequence (lef
 | Type | Example |
 |------|---------|
 | **Fabricated facts** | "A 2023 study by Smith et al. in The Lancet showed..." — the paper does not exist |
-| **Incorrect reasoning** | Correctly states premises but draws a wrong conclusion |
-| **Confident errors** | States an incorrect drug dose with complete confidence |
-| **Invented citations** | Creates realistic-looking references with real journal names and plausible authors |
+| **Incorrect reasoning** | "Aspirin inhibits COX-2, so it increases inflammation" — premises are correct (aspirin does inhibit COX-2) but the conclusion is reversed |
+| **Confident errors** | "The standard adult dose of methotrexate for rheumatoid arthritis is 25 mg daily" — stated with authority, but the correct regimen is 7.5-25 mg once weekly, not daily |
+| **Invented citations** | "According to Chen et al. (2024) in Nature Medicine, 14(3), 245-251..." — the journal name and formatting look real, but no such article exists |
 
 **Why hallucination happens:**
 - LLMs generate the most *likely* next word, not the most *true* next word
