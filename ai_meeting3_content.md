@@ -9,7 +9,7 @@ National Taiwan University of Nursing and Health Sciences
 ## Subtopics
 
 - Principles of effective prompting
-- Zero-shot, few-shot, chain-of-thought
+- Zero-shot, one-shot, few-shot, chain-of-thought
 - Healthcare-specific prompting strategies
 - Hands-on: Designing prompts for clinical scenarios
 
@@ -57,13 +57,21 @@ National Taiwan University of Nursing and Health Sciences
 
 ---
 
-## Zero-Shot, Few-Shot, and Chain-of-Thought
+## Zero-Shot, One-Shot, Few-Shot, and Chain-of-Thought
 
 **Zero-shot prompting:** Ask the question directly without examples.
 
 > "Classify the following chief complaint as urgent or non-urgent: 'I have had a headache for 3 weeks.'"
 
-**Few-shot prompting:** Provide examples before asking the question.
+**One-shot prompting:** Provide a single example before asking the question.
+
+> "Classify the following chief complaint as urgent or non-urgent:
+>
+> - 'Crushing chest pain radiating to left arm' → Urgent
+>
+> Now classify: 'I have had a headache for 3 weeks.'"
+
+**Few-shot prompting:** Provide multiple examples before asking the question.
 
 > "Classify the following chief complaints as urgent or non-urgent:
 >
@@ -82,7 +90,8 @@ National Taiwan University of Nursing and Health Sciences
 | Technique | When to use | Strength |
 |-----------|------------|----------|
 | **Zero-shot** | Simple, well-defined questions | Fast and easy |
-| **Few-shot** | Classification or formatting tasks | Teaches the pattern you want |
+| **One-shot** | Tasks where one example clarifies the expected format | Minimal effort, big improvement |
+| **Few-shot** | Classification or formatting tasks with varied patterns | Teaches the pattern you want |
 | **Chain-of-thought** | Complex reasoning or multi-step problems | Reduces errors in logic |
 
 > **Can you guess:**
