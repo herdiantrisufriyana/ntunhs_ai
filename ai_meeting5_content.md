@@ -179,8 +179,32 @@ National Taiwan University of Nursing and Health Sciences
 
 ---
 
+## When Should Humans Lead vs. AI Lead?
+
+Not every clinical task needs the same level of human involvement. A recent NEJM AI framework proposes that the optimal interaction mode depends on two dimensions: **relative accuracy** (who performs better on the task) and **error complementarity** (whether human and AI make different types of errors).
+
+<img src="images/human_ai_interaction_framework.png" alt="Human-AI interaction framework" width="600">
+
+> Figure from [Dvijotham et al., NEJM AI, 2026](https://doi.org/10.1056/AIe2600354)
+
+| Mode | When to use | Example |
+|------|------------|---------|
+| **Human-dominant** | Human is more accurate, or errors overlap | Rare disease diagnosis where AI training data is insufficient |
+| **AI-dominant** | AI is more accurate, and errors complement | Diabetic retinopathy screening at scale — human reviews AI flags |
+| **Hybrid review** | Similar accuracy, different error patterns | Radiology reading — AI and radiologist independently review, then reconcile |
+| **Disagreement resolution** | Similar accuracy, similar errors | Context-sensitive routing to specialist when both AI and generalist disagree |
+
+**Key insight:** The goal is not "AI replaces humans" or "humans override AI" — it is matching the interaction mode to the task based on measured performance and error patterns.
+
+**Connecting to the case studies:**
+- **IDx-DR** operates in the AI-dominant zone — AI is more accurate than primary care physicians at retinal screening, so it leads with human oversight for edge cases
+- **Viz.ai** operates as hybrid review — AI detects and alerts, but the stroke team makes the treatment decision
+
+---
+
 ## Take-home Message
 
 1. **Clinical decision support is evolving from simple rule-based alerts to AI-powered systems** — but alert fatigue remains a major unsolved problem
 2. **Over 950 AI medical devices are FDA-authorized** — predominantly in radiology, with the first autonomous diagnostic (IDx-DR) setting a precedent for AI without physician oversight
-3. **Regulatory approval does not guarantee real-world success** — validation in controlled trials may not reflect performance in your hospital's patient population
+3. **The right level of human vs. AI involvement depends on relative accuracy and error complementarity** — use the NEJM AI framework to match interaction mode to task
+4. **Regulatory approval does not guarantee real-world success** — validation in controlled trials may not reflect performance in your hospital's patient population
