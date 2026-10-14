@@ -101,7 +101,7 @@ National Taiwan University of Nursing and Health Sciences
 
 **Key study: AI vs. radiologists in mammography**
 
-A 2024 Lancet Oncology study (Dembrower et al.) compared AI-supported mammography screening vs. standard double reading in Sweden:
+A 2024 Lancet Oncology study ([Dembrower et al., Lancet Oncol, 2024](https://doi.org/10.1016/S1470-2045(23)00592-7)) compared AI-supported mammography screening vs. standard double reading in Sweden:
 
 - AI + one radiologist detected the same number of cancers as two radiologists
 - Reduced radiologist workload by **44%**
