@@ -89,10 +89,10 @@ Every AI tool makes claims about its performance. As healthcare professionals, y
 
 | Study | Finding | Impact |
 |-------|---------|--------|
-| **Obermeyer et al. (2019), Science** | A widely used algorithm for predicting healthcare needs was less likely to refer Black patients for extra care — at a given risk score, Black patients were sicker than White patients | Affected an estimated 200 million patients per year in the US |
-| **Adamson & Smith (2018), JAMA Dermatology** | Most dermatology AI training datasets had <5% images of dark skin | AI less accurate for skin cancer detection in people of color |
-| **Larrazabal et al. (2020), PNAS** | Chest X-ray AI models showed performance disparities across sex, age, and race when trained on imbalanced datasets | Underdiagnosis of certain conditions in underrepresented groups |
-| **Sjoding et al. (2020), NEJM** | Pulse oximeters overestimate oxygen saturation in Black patients | AI using SpO2 data inherits and may amplify this measurement bias |
+| [**Obermeyer et al. (2019), Science**](https://doi.org/10.1126/science.aax2342) | A widely used algorithm for predicting healthcare needs was less likely to refer Black patients for extra care — at a given risk score, Black patients were sicker than White patients | Affected an estimated 200 million patients per year in the US |
+| [**Adamson & Smith (2018), JAMA Dermatology**](https://doi.org/10.1001/jamadermatol.2018.1348) | Most dermatology AI training datasets had <5% images of dark skin | AI less accurate for skin cancer detection in people of color |
+| [**Larrazabal et al. (2020), PNAS**](https://doi.org/10.1073/pnas.1919012117) | Chest X-ray AI models showed performance disparities across sex, age, and race when trained on imbalanced datasets | Underdiagnosis of certain conditions in underrepresented groups |
+| [**Sjoding et al. (2020), NEJM**](https://doi.org/10.1056/NEJMc2029240) | Pulse oximeters overestimate oxygen saturation in Black patients | AI using SpO2 data inherits and may amplify this measurement bias |
 
 **Bias mitigation strategies:**
 
