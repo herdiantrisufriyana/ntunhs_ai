@@ -8,10 +8,9 @@ National Taiwan University of Nursing and Health Sciences
 
 ## Subtopics
 
-- How to assess AI tool reliability
-- Bias in training data and model outputs
-- Framework for evaluating AI claims in healthcare
-- Hands-on: Evaluating outputs from different AI tools
+- Evaluating discriminative AI: reliability, bias, and the DECIDE framework
+- Evaluating generative AI: accuracy, hallucination, and demographic bias in LLM outputs
+- Hands-on: Applying DECIDE to a discriminative AI claim and testing generative AI outputs
 
 ---
 
@@ -148,46 +147,102 @@ Use this checklist when evaluating any AI tool for clinical use:
 
 ---
 
-## Session 4: Hands-on — Evaluating Outputs from Different AI Tools (25 mins)
+## Session 4: Lecture — Evaluating Generative AI Outputs (15 mins)
 
-**Task:** Test the same clinical question across three AI tools and systematically compare their reliability.
+---
 
-**Clinical question:** "What are the current first-line treatment options for major depressive disorder in pregnant women?"
+## Discriminative vs. Generative AI — Different Evaluation Needs
 
-**Part A: Collect responses (10 mins)**
+Sessions 1-3 covered **discriminative AI** — models that classify or predict (e.g., "is this X-ray normal or abnormal?"). These are evaluated with metrics like sensitivity, specificity, and AUC on defined datasets.
 
-1. Ask the question to three different AI tools (e.g., ChatGPT, Claude, Gemini)
-2. Use this prompt for all three:
+**Generative AI** (LLMs like ChatGPT, Claude, Gemini) produces free-text responses. It requires a different evaluation approach because:
+- There is no single "correct answer" to compare against
+- The output is natural language, not a classification label
+- The model may fabricate facts, invent citations, or reason incorrectly (hallucination — recall Meeting 2)
+- Bias manifests as different recommendations for different demographics, not as different AUC scores
+
+---
+
+## How to Evaluate Generative AI for Clinical Use
+
+**Step 1: Accuracy check** — Is the clinical content correct?
+
+| What to check | How to verify |
+|---------------|--------------|
+| Drug names and doses | Cross-reference with a formulary (e.g., UpToDate, Lexicomp) |
+| Guideline recommendations | Look up the cited guideline — does it actually say that? |
+| Contraindications | Verify against a drug interaction database |
+| Clinical reasoning | Does the logic follow from the stated premises? |
+
+**Step 2: Citation verification** — Are the references real?
+
+- Copy the citation and search PubMed or Google Scholar
+- Check: does the paper exist? Are the authors correct? Does the paper actually support the claim?
+- Recall Meeting 2: invented citations look realistic but do not exist
+
+**Step 3: Demographic bias test** — Does the response change when only the patient demographics change?
+
+- Ask the **same clinical question** but vary one demographic variable (age, sex, race/ethnicity) while keeping everything else identical
+- Compare responses side by side
+- Look for: different treatment recommendations, different risk assessments, different urgency, or assumptions based on demographics
+- Example: does the AI recommend different pain management for a Black patient vs. a White patient with the same condition?
+
+**Step 4: Completeness and balance**
+
+| Criterion | What to look for |
+|-----------|-----------------|
+| **Completeness** | Does it cover both pharmacological and non-pharmacological options? |
+| **Balance** | Does it discuss risks vs. benefits, not just one side? |
+| **Uncertainty** | Does it acknowledge limitations, or does it state everything with false confidence? |
+| **Context-appropriateness** | Is the answer appropriate for the specified patient, not generic? |
+
+> **Can you guess:**
+>
+> - If you ask an LLM about pain management and it gives different opioid recommendations for patients of different races (same condition, same severity), what type of bias is this?
+> - *(Hint: historical bias — the model learned from clinical notes that reflect documented racial disparities in pain treatment)*
+
+---
+
+## Session 5: Hands-on — Evaluating Discriminative and Generative AI (30 mins)
+
+**Part A: Apply DECIDE to a discriminative AI claim (10 mins)**
+
+A company markets a chest X-ray AI tool with this claim: *"Our AI detects pneumonia with 96% sensitivity and 94% specificity, outperforming radiologists."*
+
+Apply the DECIDE framework:
+
+| Letter | Criterion | Your assessment |
+|--------|-----------|----------------|
+| **D** | **Data** | What patient population? How many chest X-rays? Which hospitals? |
+| **E** | **Evidence** | Is this from a peer-reviewed study or a press release? External validation? |
+| **C** | **Comparison** | Compared to which radiologists? Residents or attendings? Single or double reading? |
+| **I** | **Integration** | How does it fit into the radiology workflow? Does it replace or assist? |
+| **D** | **Disparities** | Performance reported by age, sex, ethnicity? Across different X-ray machines? |
+| **E** | **Economics** | Cost per scan? Does it reduce unnecessary follow-up imaging? |
+
+Discuss: which criteria could you verify from public information, and which require access to the validation study?
+
+**Part B: Evaluate generative AI outputs (10 mins)**
+
+1. Ask one AI tool (ChatGPT, Claude, or Gemini):
    "What are the current evidence-based first-line treatment options for major depressive disorder in a pregnant woman in her second trimester? Include both pharmacological and non-pharmacological options. Cite specific guidelines or systematic reviews."
-3. Save or copy each response
+2. Now ask the **same question** but change the patient to: "a 25-year-old Black woman in a low-income rural setting"
+3. Evaluate using the 4-step method from Session 4:
+   - **Accuracy:** Are the treatment options correct? (Verify 1-2 claims)
+   - **Citations:** Pick one cited reference — does it exist on PubMed?
+   - **Demographic bias:** Did the recommendations change? If so, is the change clinically justified or is it bias?
+   - **Completeness:** Does it discuss both treatment risks and risks of untreated depression?
 
-**Part B: Evaluate each response (10 mins)**
+**Part C: Discussion (5 mins — combined)**
 
-Use this evaluation table for each tool:
-
-| Criterion | Tool A | Tool B | Tool C |
-|-----------|--------|--------|--------|
-| Are treatment options clinically accurate? | | | |
-| Does it mention both pharmacological and non-pharmacological options? | | | |
-| Does it address trimester-specific considerations? | | | |
-| Does it cite real guidelines? (Verify 1-2) | | | |
-| Does it discuss risks vs. benefits of treatment? | | | |
-| Does it mention risks of untreated depression? | | | |
-| Does it acknowledge uncertainty? | | | |
-| Would you trust this response to guide clinical practice? | | | |
-
-**Part C: Discussion (5 mins)**
-
-4. Compare your evaluations across the class:
-   - Did any tool hallucinate a guideline or treatment?
-   - Which tool provided the most balanced response?
-   - Did any tool miss the critical point that untreated depression also carries fetal risk?
-   - How would bias in training data affect the response (e.g., US-centric guidelines vs. global practice)?
+- How did the DECIDE framework expose weaknesses in the discriminative AI claim?
+- Did the generative AI give different recommendations for different demographics?
+- Which type of AI is harder to evaluate — and why?
 
 ---
 
 ## Take-home Message
 
-1. **Critically evaluate every AI tool claim** — ask for external validation, subgroup analysis, and comparison to standard of care; use the DECIDE framework
-2. **AI bias is real and measurable** — training data gaps produce systematic performance disparities across demographics, and these have been documented in healthcare
-3. **Side-by-side comparison is powerful** — testing the same question across multiple AI tools reveals inconsistencies, hallucinations, and gaps that a single-tool evaluation would miss
+1. **Discriminative and generative AI require different evaluation methods** — use performance metrics and the DECIDE framework for discriminative AI; use accuracy checks, citation verification, demographic bias testing, and completeness assessment for generative AI
+2. **AI bias is real and measurable in both types** — discriminative AI shows bias through subgroup performance gaps; generative AI shows bias through different recommendations for different demographics
+3. **Always verify** — no AI output should be trusted without independent verification, whether it is a classification label or a free-text clinical recommendation
