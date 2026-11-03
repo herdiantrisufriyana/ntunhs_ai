@@ -37,31 +37,40 @@ Your study plan must include all of the following sections. Each section should 
 
 ### 2.1 Healthcare Problem
 
-State a healthcare problem that an AI tool could help address. Frame the problem using the following structure:
+State a healthcare problem that an AI tool could help address. Frame the problem using the PICO framework (recall Meeting 03, Scenario 3 and Meeting 04, Stage 1):
 
 - **P** (Population) — Which patients, clinicians, or healthcare stakeholders?
-- **P** (Problem) — What specific problem or unmet need exists?
-- **A** (AI approach) — What type of AI tool or method could address it?
+- **I** (Intervention) — What AI tool or approach could address the problem?
+- **C** (Comparison) — What is the current practice without AI?
 - **O** (Outcome) — What improvement or result do you expect?
 
 The problem should be grounded in real clinical or healthcare operational challenges. It should not be a hypothetical scenario with no basis in current practice.
 
 Examples of appropriate problems:
-- Generating accurate discharge summaries for heart failure patients using an LLM
-- Screening diabetic retinopathy images using a discriminative AI tool in primary care
-- Summarizing systematic review evidence on a clinical topic using AI-assisted literature search
-- Triaging patient messages in a hospital portal using an AI chatbot
+- Generating accurate discharge summaries for heart failure patients using an LLM, compared to manual physician documentation
+- Screening diabetic retinopathy images using a discriminative AI tool in primary care, compared to referral to an ophthalmologist
+- Summarizing systematic review evidence on a clinical topic using AI-assisted literature search, compared to manual screening
+- Triaging patient messages in a hospital portal using an AI chatbot, compared to nurse telephone triage
 
 ### 2.2 AI Tool Selection
 
 Describe the AI tool or approach you plan to use:
 
-- **Tool name or type:** Specify the tool (e.g., ChatGPT, Claude, a specific FDA-authorized device) or the general approach (e.g., LLM-based summarization, computer vision classification)
+- **Tool name or type:** Specify the tool (e.g., ChatGPT, Claude, a specific FDA-authorized device) or the general approach (e.g., LLM-based summarization, computer vision classification). See Meeting 01 for the AI tool landscape and Meeting 05 for available clinical decision support tools.
 - **AI type:** Is this a discriminative AI (classifies or predicts) or generative AI (produces text, images, or other content)? See Meeting 07 for the distinction.
-- **Justification:** Why is this tool appropriate for the stated problem? What are its strengths for this use case?
-- **Alternatives considered:** What other AI tools or approaches could address this problem? Why did you choose this one over the alternatives?
+- **Justification:** Why is this tool appropriate for the stated problem? What are its strengths and limitations for this use case? See Meeting 02 for LLM capabilities and limitations.
 
-### 2.3 Evaluation Plan
+### 2.3 Prompting Strategy (for generative AI)
+
+If your selected tool is a generative AI (LLM), describe how you will prompt it. Apply the principles and techniques from Meeting 03:
+
+- **Prompt design:** Which of the five principles will you apply? (Be specific, provide context, define format, assign role, set constraints)
+- **Prompting technique:** Will you use zero-shot, one-shot, few-shot, or chain-of-thought? Why is this technique appropriate for your task?
+- **Example prompt:** Write out the actual prompt you plan to use, showing how you applied the principles above
+
+If your selected tool is a discriminative AI (e.g., an FDA-authorized device), this section is not applicable — state so and proceed to 2.4.
+
+### 2.4 Evaluation Plan
 
 Describe how you will evaluate whether the AI tool works for your stated problem. The evaluation method should match the AI type.
 
@@ -87,7 +96,7 @@ Apply the DECIDE framework:
 | **D** | Disparities | Has performance been assessed across demographic subgroups? |
 | **E** | Economics | Does it provide value relative to its cost? |
 
-### 2.4 Literature Evidence
+### 2.5 Literature Evidence
 
 Provide evidence from existing literature that supports your proposed AI application:
 
@@ -95,7 +104,7 @@ Provide evidence from existing literature that supports your proposed AI applica
 - **For each reference:** State the key finding and how it supports your proposal
 - **Evidence gap:** If direct evidence for your specific application is lacking, explain what related evidence exists and why it is reasonable to extrapolate
 
-### 2.5 Limitations and Risks
+### 2.6 Limitations and Risks
 
 Identify at least two limitations or risks of your proposed AI application:
 
@@ -105,7 +114,7 @@ Identify at least two limitations or risks of your proposed AI application:
 - **Reliability and reproducibility:** Does the tool give consistent answers when asked the same question multiple times?
 - **Scope limitations:** What can the tool NOT do? What are the boundaries of its applicability?
 
-### 2.6 Ethical Implications
+### 2.7 Ethical Implications
 
 Address the following:
 
@@ -115,7 +124,7 @@ Address the following:
 - **Accountability:** If the AI makes an error that harms a patient, who is responsible — the clinician, the hospital, or the AI developer?
 - **Transparency:** Can the AI explain its reasoning? Should it be required to?
 
-### 2.7 Implementation Considerations
+### 2.8 Implementation Considerations
 
 Describe how the AI application would be deployed in practice:
 
@@ -139,9 +148,9 @@ The study plan is graded on a five-level rubric (A through E). Each higher grade
 | **D** | Submitted but the healthcare problem is unclear, or the proposed AI application is not feasible or coherent with the stated problem. |
 | **C** | Clearly identifies a healthcare problem, proposes an appropriate AI tool or approach, and outlines a basic evaluation plan including expected outcomes and data requirements. |
 | **B** | Includes all C criteria, and additionally provides evidence from literature supporting the proposed approach and discusses potential limitations and risks of the AI application. |
-| **A** | Includes all B criteria, and additionally demonstrates strategic depth by comparing multiple AI approaches, considering implementation barriers, and addressing ethical implications including bias and privacy. |
+| **A** | Includes all B criteria, and additionally addresses ethical implications using the responsible AI principles from Meeting 08 (privacy, consent, fairness, accountability, transparency) and considers the appropriate human-AI interaction mode from Meeting 05 for implementation. |
 
-> **Note:** A grade of C requires a complete, internally consistent proposal. A grade of B additionally requires evidence of critical thinking about evidence and risks. A grade of A further requires strategic depth and ethical awareness.
+> **Note:** A grade of C requires a complete, internally consistent proposal. A grade of B additionally requires evidence of critical thinking about evidence and risks. A grade of A further requires ethical awareness and consideration of how the tool fits into clinical workflow.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -156,13 +165,19 @@ The following is a brief worked example. Each section contains 1-2 sentences of 
 **Healthcare Problem:** Heart failure patients receive discharge summaries that are often incomplete or delayed, leading to miscommunication with primary care providers. Can an LLM generate accurate, structured discharge summaries from clinical notes to reduce documentation burden and improve care transitions?
 
 - P (Population): Hospitalized heart failure patients and their discharge care teams
-- P (Problem): Discharge summaries are frequently incomplete, delayed, or missing key information
-- A (AI approach): LLM-based text generation from structured clinical data and notes
+- I (Intervention): LLM-based text generation from structured clinical data and notes
+- C (Comparison): Current practice — physicians manually write discharge summaries
 - O (Outcome): Discharge summaries that are clinically accurate, complete, and produced faster than manual documentation
 
 ---
 
-**AI Tool Selection:** Claude (Anthropic) — a general-purpose LLM accessed via web interface. Generative AI type. Selected because it can process long clinical text inputs and generate structured outputs. Alternative considered: GPT-4 (OpenAI) — similar capability, but Claude was chosen for its longer context window and safety-oriented design. Also considered: DAX Copilot (Nuance/Microsoft) — a specialized documentation AI, but it requires EHR integration not available in this evaluation.
+**AI Tool Selection:** Claude (Anthropic) — a general-purpose LLM accessed via web interface. Generative AI type (Meeting 07). Selected because it can process long clinical text inputs and generate structured outputs. Key limitation: as a general-purpose LLM, it may hallucinate clinical details not present in the source notes (Meeting 02).
+
+---
+
+**Prompting Strategy:** Generative AI — applicable. Using the five principles from Meeting 03: (1) Be specific — specify the patient's diagnoses, medications, and hospital course; (2) Provide context — include all relevant clinical details from the encounter; (3) Define format — request SOAP-style structured output with sections for diagnosis, hospital course, medications at discharge, follow-up plan, and pending results; (4) Assign role — "Act as a hospitalist writing a discharge summary"; (5) Set constraints — "Use only the information provided; do not add information not in the clinical notes." Prompting technique: one-shot — provide one example of a well-structured discharge summary, then ask the LLM to generate one from the patient's clinical data.
+
+Example prompt: "Act as a hospitalist writing a discharge summary. Using only the clinical information below, generate a structured discharge summary with the following sections: Primary Diagnosis, Hospital Course, Medications at Discharge, Follow-up Plan, Pending Results. Here is an example of the expected format: [example]. Now generate a discharge summary for this patient: [patient clinical data]."
 
 ---
 
@@ -218,13 +233,14 @@ The following table maps each section of the study plan to the meeting(s) whose 
 
 | Study Plan Section | Relevant Meeting(s) | Key Content |
 |--------------------|----------------------|-------------|
-| Healthcare Problem | Meeting 01: The AI revolution in healthcare | What AI can and cannot do, healthcare AI use cases |
-| AI Tool Selection | Meeting 02: How LLMs work + Meeting 05: Clinical decision support | LLM capabilities and limitations, discriminative vs generative AI, available CDS tools |
-| Evaluation Plan (generative) | Meeting 07: Evaluating AI (Session 4) | 4-step evaluation: accuracy, citation verification, demographic bias test, completeness |
-| Evaluation Plan (discriminative) | Meeting 07: Evaluating AI (Sessions 1-3) | DECIDE framework, reliability assessment, performance metrics |
-| Literature Evidence | Meeting 04: AI for literature review | AI-powered search tools, evaluating AI-generated summaries |
-| Limitations and Risks | Meeting 02: Hallucination + Meeting 07: Bias | Types of hallucination, sources of bias, documented bias examples |
-| Ethical Implications | Meeting 08: AI ethics, regulation, and governance | Privacy regulations, responsible AI, accountability |
-| Implementation Considerations | Meeting 05: Clinical decision support + Meeting 06: Medical imaging | Workflow integration, alert fatigue, deployment considerations |
+| Healthcare Problem (2.1) | Meeting 03: Prompt engineering (PICO) + Meeting 04: AI for literature review (PICO) | PICO framework for framing clinical questions |
+| AI Tool Selection (2.2) | Meeting 01: AI revolution + Meeting 02: How LLMs work + Meeting 05: Clinical decision support + Meeting 07: Evaluating AI | AI tool landscape, LLM capabilities and limitations, available CDS tools, discriminative vs generative AI |
+| Prompting Strategy (2.3) | Meeting 03: Prompt engineering | Five principles, zero/one/few-shot, chain-of-thought, healthcare-specific strategies |
+| Evaluation Plan (2.4, generative) | Meeting 07: Evaluating AI (Session 4) | 4-step evaluation: accuracy, citation verification, demographic bias test, completeness |
+| Evaluation Plan (2.4, discriminative) | Meeting 07: Evaluating AI (Sessions 1-3) | DECIDE framework, reliability assessment, performance metrics |
+| Literature Evidence (2.5) | Meeting 04: AI for literature review | AI-powered search tools, evaluating AI-generated summaries |
+| Limitations and Risks (2.6) | Meeting 02: Hallucination + Meeting 07: Bias | Types of hallucination, sources of bias, documented bias examples |
+| Ethical Implications (2.7) | Meeting 08: AI ethics, regulation, and governance | Privacy regulations, responsible AI principles, accountability, model cards |
+| Implementation Considerations (2.8) | Meeting 05: Clinical decision support + Meeting 06: Medical imaging | Workflow integration, human-AI interaction framework, deployment considerations |
 
 [Back to Table of Contents](#table-of-contents)

@@ -131,9 +131,9 @@ The capstone is graded on a five-level rubric (A through E). Each higher grade b
 | **D** | Submitted/presented but shows minimal effort or major flaws (e.g., AI tool not actually used, results fabricated, or substantial mismatch with the proposed study plan). |
 | **C** | Implements the proposed AI application with real examples, demonstrates its use for the healthcare problem, and presents results in a clear and structured manner. |
 | **B** | Includes all C criteria, and additionally evaluates the AI tool's output quality with specific criteria (e.g., accuracy, relevance, completeness) and discusses practical implementation considerations. |
-| **A** | Includes all B criteria, and additionally provides a critical comparative analysis of multiple AI approaches, discusses scalability and regulatory considerations, and presents a compelling evidence-based adoption recommendation. |
+| **A** | Includes all B criteria, and additionally applies the evaluation frameworks from Meeting 07 comprehensively (DECIDE or 4-step method), addresses ethical and regulatory considerations using the responsible AI principles from Meeting 08, determines the appropriate human-AI interaction mode from Meeting 05, and presents a compelling evidence-based adoption recommendation. |
 
-> **Note:** A grade of C requires a technically complete evaluation with real AI outputs. A grade of B additionally requires systematic evaluation using the course frameworks. A grade of A further requires the kind of strategic thinking expected when advising a healthcare organization on AI adoption.
+> **Note:** A grade of C requires a technically complete evaluation with real AI outputs. A grade of B additionally requires systematic evaluation using the course frameworks. A grade of A further requires comprehensive application of the course's evaluation, ethical, and deployment frameworks.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -145,13 +145,14 @@ The following table shows how each section of the study plan (Meeting 09) maps t
 
 | Study Plan Section (Meeting 09) | Capstone Report Section | Supporting Meeting(s) |
 |---------------------------------|-------------------------|----------------------|
-| Healthcare Problem | Introduction: Problem and background | Meeting 01: AI revolution in healthcare |
-| AI Tool Selection | Introduction: AI approach | Meeting 02: How LLMs work; Meeting 05: Clinical decision support |
-| Evaluation Plan | Methods: Evaluation methodology | Meeting 07: Evaluating AI (discriminative + generative) |
-| Literature Evidence | Discussion: Comparison with literature | Meeting 04: AI for literature review |
-| Limitations and Risks | Discussion: Limitations encountered | Meeting 02: Hallucination; Meeting 07: Bias |
-| Ethical Implications | Discussion: Part of adoption recommendation | Meeting 08: AI ethics, regulation, governance |
-| Implementation Considerations | Discussion: Adoption recommendation | Meeting 05: CDS workflow; Meeting 13: AI strategy |
+| Healthcare Problem (2.1) | Introduction: Problem and background | Meeting 03: PICO; Meeting 04: PICO in literature review |
+| AI Tool Selection (2.2) | Introduction: AI approach | Meeting 01: AI landscape; Meeting 02: LLMs; Meeting 05: CDS tools; Meeting 07: discriminative vs generative |
+| Prompting Strategy (2.3) | Methods: Prompts used | Meeting 03: Prompt engineering |
+| Evaluation Plan (2.4) | Methods: Evaluation methodology | Meeting 07: Evaluating AI (DECIDE + 4-step method) |
+| Literature Evidence (2.5) | Discussion: Comparison with literature | Meeting 04: AI for literature review |
+| Limitations and Risks (2.6) | Discussion: Limitations encountered | Meeting 02: Hallucination; Meeting 07: Bias |
+| Ethical Implications (2.7) | Discussion: Part of adoption recommendation | Meeting 08: AI ethics, regulation, governance |
+| Implementation Considerations (2.8) | Discussion: Adoption recommendation | Meeting 05: CDS workflow, human-AI interaction framework |
 
 > **Note:** The study plan is the design; the capstone is the execution. Every section of the study plan has a corresponding section in the capstone report. If a step in your study plan proved infeasible during execution, document the deviation in the Methods section of your report.
 
