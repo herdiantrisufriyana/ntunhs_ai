@@ -35,22 +35,22 @@ The study plan is worth **25% of the final grade** and is part of the capstone p
 
 Your study plan must include all of the following sections. Each section should be specific enough that another person could understand and replicate your proposed approach.
 
-### 2.1 Healthcare Problem
+### 2.1 Clinical Deployment Scenario
 
-State a healthcare problem that an AI tool could help address. Frame the problem using the PICO framework (recall Meeting 03, Scenario 3 and Meeting 04, Stage 1):
+Frame your proposed AI application using PICO. Throughout this course, PICO has been used to frame how AI tools are evaluated for clinical deployment — for example, IDx-DR (Meeting 05: P=adults at risk for diabetic retinopathy, I=autonomous AI screening, C=ophthalmologist referral, O=detection rate) and the Dembrower mammography study (Meeting 06: P=women in screening, I=AI + one radiologist, C=double reading by two radiologists, O=cancer detection rate). Your PICO defines the deployment context and determines what kind of AI tool you need.
 
-- **P** (Population) — Which patients, clinicians, or healthcare stakeholders?
-- **I** (Intervention) — What AI tool or approach could address the problem?
-- **C** (Comparison) — What is the current practice without AI?
-- **O** (Outcome) — What improvement or result do you expect?
+- **P** (Population) — What is the target patient population in your setting?
+- **I** (Intervention) — What would the AI tool do in practice?
+- **C** (Comparison) — What is the current standard of care it would replace or augment?
+- **O** (Outcome) — What clinical outcome should improve?
 
-The problem should be grounded in real clinical or healthcare operational challenges. It should not be a hypothetical scenario with no basis in current practice.
+This framing directly feeds into AI tool selection (does the tool match this PICO?) and evaluation (Meeting 07 DECIDE framework — does the tool's training data match your P? Was it compared against your C?).
 
-Examples of appropriate problems:
-- Generating accurate discharge summaries for heart failure patients using an LLM, compared to manual physician documentation
-- Screening diabetic retinopathy images using a discriminative AI tool in primary care, compared to referral to an ophthalmologist
-- Summarizing systematic review evidence on a clinical topic using AI-assisted literature search, compared to manual screening
-- Triaging patient messages in a hospital portal using an AI chatbot, compared to nurse telephone triage
+Examples:
+- P: Heart failure patients discharged from a teaching hospital. I: LLM generates structured discharge summaries from clinical notes. C: Physicians manually write discharge summaries. O: Completeness and timeliness of discharge documentation.
+- P: Adults at risk for diabetic retinopathy in primary care clinics without ophthalmologists. I: AI screening tool analyzes retinal fundus photos. C: Referral to ophthalmologist for screening. O: Screening rate and detection sensitivity.
+- P: Researchers conducting a systematic review on a clinical topic. I: AI-assisted literature search and screening. C: Manual PubMed search and two-reviewer screening. O: Time to complete screening with equivalent recall.
+- P: Patients sending messages through a hospital portal. I: AI chatbot triages messages by urgency. C: Nurse telephone triage. O: Response time and triage accuracy.
 
 ### 2.2 AI Tool Selection
 
@@ -162,12 +162,14 @@ The following is a brief worked example. Each section contains 1-2 sentences of 
 
 ---
 
-**Healthcare Problem:** Heart failure patients receive discharge summaries that are often incomplete or delayed, leading to miscommunication with primary care providers. Can an LLM generate accurate, structured discharge summaries from clinical notes to reduce documentation burden and improve care transitions?
+**Clinical Deployment Scenario:** Heart failure patients receive discharge summaries that are often incomplete or delayed, leading to miscommunication with primary care providers.
 
-- P (Population): Hospitalized heart failure patients and their discharge care teams
-- I (Intervention): LLM-based text generation from structured clinical data and notes
-- C (Comparison): Current practice — physicians manually write discharge summaries
-- O (Outcome): Discharge summaries that are clinically accurate, complete, and produced faster than manual documentation
+- P (Population): Heart failure patients discharged from a teaching hospital
+- I (Intervention): LLM generates structured discharge summaries from clinical notes
+- C (Comparison): Physicians manually write discharge summaries
+- O (Outcome): Completeness and timeliness of discharge documentation
+
+This PICO tells us: we need a generative AI tool that can process clinical notes and produce structured text. The tool must have been validated on similar clinical documentation tasks (DECIDE — Data). It will be compared against physician-written summaries (DECIDE — Comparison).
 
 ---
 
@@ -233,7 +235,7 @@ The following table maps each section of the study plan to the meeting(s) whose 
 
 | Study Plan Section | Relevant Meeting(s) | Key Content |
 |--------------------|----------------------|-------------|
-| Healthcare Problem (2.1) | Meeting 03: Prompt engineering (PICO) + Meeting 04: AI for literature review (PICO) | PICO framework for framing clinical questions |
+| Clinical Deployment Scenario (2.1) | Meeting 05: Case studies (IDx-DR, Viz.ai PICO framing) + Meeting 06: Dembrower study PICO framing + Meeting 07: DECIDE (Data, Comparison) | PICO to define deployment context; determines AI tool requirements and evaluation criteria |
 | AI Tool Selection (2.2) | Meeting 01: AI revolution + Meeting 02: How LLMs work + Meeting 05: Clinical decision support + Meeting 07: Evaluating AI | AI tool landscape, LLM capabilities and limitations, available CDS tools, discriminative vs generative AI |
 | Prompting Strategy (2.3) | Meeting 03: Prompt engineering | Five principles, zero/one/few-shot, chain-of-thought, healthcare-specific strategies |
 | Evaluation Plan (2.4, generative) | Meeting 07: Evaluating AI (Session 4) | 4-step evaluation: accuracy, citation verification, demographic bias test, completeness |

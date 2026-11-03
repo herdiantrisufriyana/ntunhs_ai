@@ -145,7 +145,7 @@ The following table shows how each section of the study plan (Meeting 09) maps t
 
 | Study Plan Section (Meeting 09) | Capstone Report Section | Supporting Meeting(s) |
 |---------------------------------|-------------------------|----------------------|
-| Healthcare Problem (2.1) | Introduction: Problem and background | Meeting 03: PICO; Meeting 04: PICO in literature review |
+| Clinical Deployment Scenario (2.1) | Introduction: Problem and background | Meeting 05: Case studies (PICO framing); Meeting 06: Dembrower (PICO); Meeting 07: DECIDE (Data, Comparison) |
 | AI Tool Selection (2.2) | Introduction: AI approach | Meeting 01: AI landscape; Meeting 02: LLMs; Meeting 05: CDS tools; Meeting 07: discriminative vs generative |
 | Prompting Strategy (2.3) | Methods: Prompts used | Meeting 03: Prompt engineering |
 | Evaluation Plan (2.4) | Methods: Evaluation methodology | Meeting 07: Evaluating AI (DECIDE + 4-step method) |
