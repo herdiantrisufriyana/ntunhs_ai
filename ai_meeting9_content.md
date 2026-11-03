@@ -37,20 +37,20 @@ Your study plan must include all of the following sections. Each section should 
 
 ### 2.1 Clinical Deployment Scenario
 
-Frame your proposed AI application using PICO. Throughout this course, PICO has been used to frame how AI tools are evaluated for clinical deployment — for example, IDx-DR (Meeting 05: P=adults at risk for diabetic retinopathy, I=autonomous AI screening, C=ophthalmologist referral, O=detection rate) and the Dembrower mammography study (Meeting 06: P=women in screening, I=AI + one radiologist, C=double reading by two radiologists, O=cancer detection rate). Your PICO defines the deployment context and determines what kind of AI tool you need.
+Frame your proposed AI application using PICO. Throughout this course, PICO has been used to frame how AI tools are evaluated for clinical deployment — for example, IDx-DR (Meeting 05: P=retinal fundus photos of adults at risk for diabetic retinopathy, I=AI classification, C=ophthalmologist grading, O=confirmed diabetic retinopathy diagnosis) and the Dembrower mammography study (Meeting 06: P=screening mammograms, I=AI + one radiologist reading, C=double reading by two radiologists, O=histologically confirmed breast cancer). Your PICO defines the deployment context and determines what kind of AI tool you need.
 
-- **P** (Population) — What is the target patient population in your setting?
-- **I** (Intervention) — What would the AI tool do in practice?
-- **C** (Comparison) — What is the current standard of care it would replace or augment?
-- **O** (Outcome) — What clinical outcome should improve?
+- **P** (Population) — The unit of observation and its selection criteria. This could be patients, clinical documents, medical images, research articles, or any other unit the AI tool processes. Describe who or what is included and the setting.
+- **I** (Intervention) — What the AI tool does — its output for each unit in the population.
+- **C** (Comparison) — What currently produces the same type of output without the AI tool.
+- **O** (Outcome) — The reference standard used to judge whether I or C produced a better output. Evaluation metrics compare I and C against this outcome.
 
-This framing directly feeds into AI tool selection (does the tool match this PICO?) and evaluation (Meeting 07 DECIDE framework — does the tool's training data match your P? Was it compared against your C?).
+This framing directly feeds into AI tool selection (does the tool match this PICO?) and evaluation (Meeting 07 DECIDE framework — does the tool's training data match your P? Was it compared against your C? Does the evidence measure your O?).
 
 Examples:
-- P: Heart failure patients discharged from a teaching hospital. I: LLM generates structured discharge summaries from clinical notes. C: Physicians manually write discharge summaries. O: Completeness and timeliness of discharge documentation.
-- P: Adults at risk for diabetic retinopathy in primary care clinics without ophthalmologists. I: AI screening tool analyzes retinal fundus photos. C: Referral to ophthalmologist for screening. O: Screening rate and detection sensitivity.
-- P: Researchers conducting a systematic review on a clinical topic. I: AI-assisted literature search and screening. C: Manual PubMed search and two-reviewer screening. O: Time to complete screening with equivalent recall.
-- P: Patients sending messages through a hospital portal. I: AI chatbot triages messages by urgency. C: Nurse telephone triage. O: Response time and triage accuracy.
+- P: Discharge summaries of heart failure patients at a teaching hospital. I: LLM-generated discharge summary. C: Physician-written discharge summary. O: Complete discharge summary (containing diagnosis, hospital course, medications, follow-up plan, pending results) — used to measure completeness rate of I vs. C.
+- P: Retinal fundus photos of adults at risk for diabetic retinopathy in primary care. I: AI screening tool classification (referable/non-referable). C: Ophthalmologist grading. O: Confirmed diabetic retinopathy diagnosis — used to measure sensitivity and specificity of I vs. C.
+- P: Titles and abstracts of PubMed articles retrieved for a systematic review query. I: AI-assisted relevance screening. C: Two-reviewer manual screening. O: Articles meeting inclusion criteria — used to measure recall and time of I vs. C.
+- P: Patient messages in a hospital portal. I: AI chatbot urgency classification. C: Nurse telephone triage classification. O: Clinician-adjudicated urgency level — used to measure triage accuracy of I vs. C.
 
 ### 2.2 AI Tool Selection
 
@@ -164,12 +164,12 @@ The following is a brief worked example. Each section contains 1-2 sentences of 
 
 **Clinical Deployment Scenario:** Heart failure patients receive discharge summaries that are often incomplete or delayed, leading to miscommunication with primary care providers.
 
-- P (Population): Heart failure patients discharged from a teaching hospital
-- I (Intervention): LLM generates structured discharge summaries from clinical notes
-- C (Comparison): Physicians manually write discharge summaries
-- O (Outcome): Completeness and timeliness of discharge documentation
+- P (Population): Discharge summaries of heart failure patients at a teaching hospital
+- I (Intervention): LLM-generated discharge summary from clinical notes
+- C (Comparison): Physician-written discharge summary
+- O (Outcome): Complete discharge summary (containing diagnosis, hospital course, medications at discharge, follow-up plan, pending results) — used to measure completeness rate of I vs. C
 
-This PICO tells us: we need a generative AI tool that can process clinical notes and produce structured text. The tool must have been validated on similar clinical documentation tasks (DECIDE — Data). It will be compared against physician-written summaries (DECIDE — Comparison).
+This PICO tells us: we need a generative AI tool that can process clinical notes and produce structured text. The unit of observation is the discharge summary, not the patient. The outcome is a reference standard (complete summary) against which both the AI-generated and physician-written summaries are evaluated. This maps to DECIDE — Data (was the tool validated on similar clinical documentation?) and Comparison (compared against the same type of output?).
 
 ---
 
