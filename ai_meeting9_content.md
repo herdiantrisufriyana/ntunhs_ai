@@ -192,8 +192,8 @@ Example prompt: "Act as a hospitalist writing a discharge summary. Using only th
 ---
 
 **Literature Evidence:**
-1. Patel & Lam (2024), JAMIA: LLMs generated discharge summaries with 89% clinical accuracy compared to physician-written summaries, with significant time savings. Supports the feasibility of LLM-based discharge documentation.
-2. WHO (2021), Ethics and Governance of AI for Health: Provides framework for responsible deployment of AI in clinical documentation, supporting the ethical evaluation component of this proposal.
+1. [Docherty et al. (2025), Nat Sci Rep](https://doi.org/10.1038/s41598-025-01618-7): Fine-tuned LLM-generated discharge summaries were deemed equivalent (45%) or superior (36%) to physician-written summaries by 10 clinical reviewers. Supports the feasibility of LLM-based discharge documentation.
+2. [WHO (2021), Ethics and Governance of AI for Health](https://www.who.int/publications/i/item/9789240029200): Provides framework for responsible deployment of AI in clinical documentation, supporting the ethical evaluation component of this proposal.
 
 ---
 
