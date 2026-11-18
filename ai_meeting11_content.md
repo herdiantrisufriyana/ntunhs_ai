@@ -220,9 +220,10 @@ A multi-step AI workflow chains together multiple actions where the output of on
 1. Click the **+** icon on the Step 4 module
 2. In the left sidebar, click **Built-in tools**. Search for **CSV** and select **Parse CSV**.
 3. In the module settings:
-   - **CSV string:** Click inside the field to open the output panel on the right. Under **AI: Generate Reconciliation CSV**, click **Answer** to insert the CSV text from Step 4
-   - **Delimiter:** Select **Comma**
-   - **CSV contains headers:** Check **Yes**
+   - **CSV contains headers:** Select **Yes**
+   - **CSV headers (recommended):** Type `Medication Name,Dose,Dose Unit,Frequency,Route,Interaction Flag,Interaction Detail`
+   - **Delimiter:** Select **Other**. In **Delimiter character:** type `,`
+   - **CSV:** Click inside the field to open the output panel on the right. Under **AI: Generate Reconciliation CSV**, click **Answer** to insert the CSV text from Step 4
 4. Click **Save**
 5. Right-click the module and select **Rename**. Name it `Parse: Reconciliation Table`
 
