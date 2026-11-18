@@ -179,7 +179,8 @@ A multi-step AI workflow chains together multiple actions where the output of on
 
 1. Go to [make.com](https://www.make.com) and sign up for a free account (Google login works)
 2. Click **Create a scenario**
-3. You will see the visual canvas where you connect modules (nodes) to build your workflow
+3. **Option A — Import blueprint:** Click the **three dots** (⋮) in the upper-right corner → **Import blueprint** → **Choose File** → select [meeting11.blueprint.json](data/meeting11.blueprint.json) (download from this repo's `data/` folder) → **Save**. After importing, you only need to set up your Google Sheets connection in Step 6 (the rest is pre-configured). Skip to **Step 6** below.
+4. **Option B — Build from scratch:** Follow all steps below starting from Step 1.
 
 **Build the workflow (15 mins):**
 

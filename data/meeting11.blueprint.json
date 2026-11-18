@@ -1,0 +1,640 @@
+{
+    "name": "meeting11",
+    "flow": [
+        {
+            "id": 1,
+            "module": "util:SetVariable2",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "name": "medication_list",
+                "value": "pt takes metformin 500 BID, lisinopril 10mg daily, atorvastatin 20 qhs, ASA 81mg daily, and insulin glargine 20u SC qhs. Also on PRN         \n  albuterol MDI 2 puffs q4-6h."
+            },
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0,
+                    "name": "Input: Medication List"
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "8001150d7dad6354"
+                },
+                "restore": {},
+                "expect": [
+                    {
+                        "name": "name",
+                        "type": "text",
+                        "label": "Variable name",
+                        "required": true
+                    },
+                    {
+                        "name": "value",
+                        "type": "any",
+                        "label": "Variable value"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "medication_list",
+                        "type": "any",
+                        "label": "medication_list"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 5,
+            "module": "ai-tools:Ask",
+            "version": 2,
+            "parameters": {
+                "model": "small",
+                "makeConnectionId": 12405886
+            },
+            "mapper": {
+                "input": "Extract the following free-text medication list into a structured table with columns: medication name, dose, frequency, route. Expand all abbreviations into full clinical terms. Input: {{1.medication_list}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 325,
+                    "y": -10,
+                    "name": "AI: Extract Medications"
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "d806c9870cc59f7d"
+                },
+                "restore": {
+                    "parameters": {
+                        "model": {
+                            "mode": "chose",
+                            "label": "SmallModel: gpt-5-nano. Reasoning: minimal. Efficiently handles long conversations and reasoning, delivering smart conclusions quickly",
+                            "nested": []
+                        },
+                        "makeConnectionId": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "ai-provider"
+                            },
+                            "label": "Make's AI Provider (default)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "makeConnectionId",
+                        "type": "account:ai-provider,openai-gpt-3,anthropic-claude,gemini-ai-q9zyjp,ai-agent-foundry-openai,ai-agent-foundry-non-openai,mistral-ai,cohere,groq,ai-agent-xai,amazon-bedrock,ai-agent-openai-compatible",
+                        "label": "Connection",
+                        "required": true
+                    },
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "input",
+                        "type": "text",
+                        "label": "Text",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 6,
+            "module": "ai-tools:Ask",
+            "version": 2,
+            "parameters": {
+                "model": "medium",
+                "makeConnectionId": 12405886
+            },
+            "mapper": {
+                "input": "Given this medication list, identify any potential drug-drug interactions. For each interaction, state the medications involved, the risk level, and the clinical recommendation."
+            },
+            "metadata": {
+                "designer": {
+                    "x": 585,
+                    "y": 7,
+                    "name": "AI: Check Interactions"
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "43bc5a8a247799c3"
+                },
+                "restore": {
+                    "parameters": {
+                        "model": {
+                            "mode": "chose",
+                            "label": "MediumModel: gpt-5-nano. Reasoning: low. A balanced, quick choice for clearly defined tasks needing reliable answers rather than deep analysis",
+                            "nested": []
+                        },
+                        "makeConnectionId": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "ai-provider"
+                            },
+                            "label": "Make's AI Provider (default)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "makeConnectionId",
+                        "type": "account:ai-provider,openai-gpt-3,anthropic-claude,gemini-ai-q9zyjp,ai-agent-foundry-openai,ai-agent-foundry-non-openai,mistral-ai,cohere,groq,ai-agent-xai,amazon-bedrock,ai-agent-openai-compatible",
+                        "label": "Connection",
+                        "required": true
+                    },
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "input",
+                        "type": "text",
+                        "label": "Text",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 8,
+            "module": "ai-tools:Ask",
+            "version": 2,
+            "parameters": {
+                "model": "medium",
+                "makeConnectionId": 12405886
+            },
+            "mapper": {
+                "input": "Using the structured medication list and the interaction check below, generate a medication reconciliation in CSV format for a hospital admission record. The first row must be the header: Medication Name,Dose,Dose Unit,Frequency,Route,Interaction Flag,Interaction Detail. Output one row per medication. Use commas as separators. Do not include any text before or after the CSV. Medication list:{{5.answer}}. Interaction check: {{6.answer}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 898,
+                    "y": 5,
+                    "name": "AI: Generate Reconciliation"
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "61cce7b8276bf10b"
+                },
+                "restore": {
+                    "parameters": {
+                        "model": {
+                            "mode": "chose",
+                            "label": "MediumModel: gpt-5-nano. Reasoning: low. A balanced, quick choice for clearly defined tasks needing reliable answers rather than deep analysis",
+                            "nested": []
+                        },
+                        "makeConnectionId": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "ai-provider"
+                            },
+                            "label": "Make's AI Provider (default)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "makeConnectionId",
+                        "type": "account:ai-provider,openai-gpt-3,anthropic-claude,gemini-ai-q9zyjp,ai-agent-foundry-openai,ai-agent-foundry-non-openai,mistral-ai,cohere,groq,ai-agent-xai,amazon-bedrock,ai-agent-openai-compatible",
+                        "label": "Connection",
+                        "required": true
+                    },
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "input",
+                        "type": "text",
+                        "label": "Text",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 18,
+            "module": "csv:ParseCSV",
+            "version": 1,
+            "parameters": {
+                "relax": false,
+                "colCount": null,
+                "delimiter": ",",
+                "csvHeaders": "Medication Name,Dose,Dose Unit,Frequency,Route,Interaction Flag,Interaction Detail",
+                "delimiterType": "other",
+                "csvContainsHeaders": true
+            },
+            "mapper": {
+                "csv": "{{8.answer}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1198,
+                    "y": 5
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "71b7339109e396c8"
+                },
+                "restore": {
+                    "parameters": {
+                        "delimiterType": {
+                            "label": "Other"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "colCount",
+                        "type": "number",
+                        "label": "Number of columns"
+                    },
+                    {
+                        "name": "csvContainsHeaders",
+                        "type": "boolean",
+                        "label": "CSV contains headers",
+                        "required": true
+                    },
+                    {
+                        "name": "delimiterType",
+                        "type": "select",
+                        "label": "Delimiter",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                ",",
+                                "\t",
+                                "other"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "relax",
+                        "type": "boolean",
+                        "label": "Preserve quotes inside unquoted field",
+                        "required": true
+                    },
+                    {
+                        "name": "csvHeaders",
+                        "type": "text",
+                        "label": "CSV headers (recommended)"
+                    },
+                    {
+                        "name": "delimiter",
+                        "type": "text",
+                        "label": "Delimiter character",
+                        "required": true,
+                        "validate": {
+                            "max": 1,
+                            "min": 1
+                        }
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "csv",
+                        "type": "text",
+                        "label": "CSV",
+                        "required": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "col1",
+                        "type": "text",
+                        "label": "Medication Name"
+                    },
+                    {
+                        "name": "col2",
+                        "type": "text",
+                        "label": "Dose"
+                    },
+                    {
+                        "name": "col3",
+                        "type": "text",
+                        "label": "Dose Unit"
+                    },
+                    {
+                        "name": "col4",
+                        "type": "text",
+                        "label": "Frequency"
+                    },
+                    {
+                        "name": "col5",
+                        "type": "text",
+                        "label": "Route"
+                    },
+                    {
+                        "name": "col6",
+                        "type": "text",
+                        "label": "Interaction Flag"
+                    },
+                    {
+                        "name": "col7",
+                        "type": "text",
+                        "label": "Interaction Detail"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 21,
+            "module": "google-sheets:addRow",
+            "version": 2,
+            "parameters": {
+                "__IMTCONN__": 12406748
+            },
+            "mapper": {
+                "from": "drive",
+                "mode": "select",
+                "values": {
+                    "Dose": "{{18.col2}}",
+                    "Route": "{{18.col5}}",
+                    "Dose Unit": "{{18.col3}}",
+                    "Frequency": "{{18.col4}}",
+                    "Medication Name": "{{18.col1}}",
+                    "Interaction Flag": "{{18.col6}}",
+                    "Interaction Detail": "{{18.col7}}"
+                },
+                "sheetId": "Reconciliation Table",
+                "spreadsheetId": "/14eIPCFa-dLRiClHReAlY4cMfSkMeT3e5/1mAmiWthI6fs11kGJpOTIk9-HN8LC3Cc2ChBSFrUrdQM",
+                "includesHeaders": true,
+                "insertDataOption": "INSERT_ROWS",
+                "useColumnHeaders": true,
+                "valueInputOption": "USER_ENTERED",
+                "insertUnformatted": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1498,
+                    "y": 5,
+                    "name": "Output: Google Sheet"
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "55f2e57c2baca80d"
+                },
+                "restore": {
+                    "expect": {
+                        "from": {
+                            "label": "My Drive"
+                        },
+                        "mode": {
+                            "label": "Search by path"
+                        },
+                        "sheetId": {
+                            "label": "Reconciliation Table"
+                        },
+                        "spreadsheetId": {
+                            "path": [
+                                "ntunhs_ai",
+                                "meeting11"
+                            ]
+                        },
+                        "includesHeaders": {
+                            "label": "Yes"
+                        },
+                        "insertDataOption": {
+                            "mode": "chose",
+                            "label": "Insert rows"
+                        },
+                        "useColumnHeaders": {
+                            "label": "Yes"
+                        },
+                        "valueInputOption": {
+                            "mode": "chose",
+                            "label": "User entered"
+                        },
+                        "insertUnformatted": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google"
+                            },
+                            "label": "Herdiantri's Google connection (herdi@nycu.edu.tw)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "mode",
+                        "type": "select",
+                        "label": "Search Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "select",
+                                "fromAll",
+                                "map"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "insertUnformatted",
+                        "type": "boolean",
+                        "label": "Unformatted",
+                        "required": true
+                    },
+                    {
+                        "name": "valueInputOption",
+                        "type": "select",
+                        "label": "Value input option",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "USER_ENTERED",
+                                "RAW"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "insertDataOption",
+                        "type": "select",
+                        "label": "Insert data option",
+                        "validate": {
+                            "enum": [
+                                "INSERT_ROWS",
+                                "OVERWRITE"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "from",
+                        "type": "select",
+                        "label": "Drive",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "drive",
+                                "share",
+                                "team"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "spreadsheetId",
+                        "type": "file",
+                        "label": "Spreadsheet Name",
+                        "required": true
+                    },
+                    {
+                        "name": "sheetId",
+                        "type": "select",
+                        "label": "Sheet Name",
+                        "required": true
+                    },
+                    {
+                        "name": "includesHeaders",
+                        "type": "select",
+                        "label": "Table contains headers",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                true,
+                                false
+                            ]
+                        }
+                    },
+                    {
+                        "name": "useColumnHeaders",
+                        "type": "select",
+                        "label": "Use column headers as IDs of the columns",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                true,
+                                false
+                            ]
+                        }
+                    },
+                    {
+                        "name": "values",
+                        "spec": [
+                            {
+                                "name": "Medication Name",
+                                "type": "text",
+                                "label": "Medication Name (A)"
+                            },
+                            {
+                                "name": "Dose",
+                                "type": "text",
+                                "label": "Dose (B)"
+                            },
+                            {
+                                "name": "Dose Unit",
+                                "type": "text",
+                                "label": "Dose Unit (C)"
+                            },
+                            {
+                                "name": "Frequency",
+                                "type": "text",
+                                "label": "Frequency (D)"
+                            },
+                            {
+                                "name": "Route",
+                                "type": "text",
+                                "label": "Route (E)"
+                            },
+                            {
+                                "name": "Interaction Flag",
+                                "type": "text",
+                                "label": "Interaction Flag (F)"
+                            },
+                            {
+                                "name": "Interaction Detail",
+                                "type": "text",
+                                "label": "Interaction Detail (G)"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Values in columns",
+                        "metadata": [
+                            [
+                                [
+                                    "Medication Name",
+                                    "Dose",
+                                    "Dose Unit",
+                                    "Frequency",
+                                    "Route",
+                                    "Interaction Flag",
+                                    "Interaction Detail"
+                                ]
+                            ]
+                        ]
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us2.make.com",
+        "notes": []
+    }
+}
