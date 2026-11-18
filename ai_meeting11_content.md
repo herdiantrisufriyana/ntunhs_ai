@@ -219,8 +219,11 @@ A multi-step AI workflow chains together multiple actions where the output of on
 
 1. Click the **+** icon on the Step 4 module
 2. In the left sidebar, click **AI by Make**. Scroll down to **Text**, select **Extract information from text**.
-3. In the module settings: Connection is **Make's AI Provider (default)**. In the Text field, click to open the output panel. Under **AI: Generate Reconciliation**, click **Answer** to insert the reconciliation text from Step 4.
-4. Under **Information**, click **Add item** to define each field to extract. Add the following items:
+3. In the module settings:
+   - **Connection:** Already set to **Make's AI Provider (default)**
+   - **Model:** Select **Small** (free) — this is a straightforward extraction task
+   - **Text:** Click inside the field to open the output panel on the right. Under **AI: Generate Reconciliation**, click **Answer** to insert the reconciliation text from Step 4
+4. Under **Information**, click **+ Add information** six times, once for each field. Fill in each item:
 
 | Name | Description | Type |
 |------|------------|------|
