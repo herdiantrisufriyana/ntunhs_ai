@@ -211,32 +211,20 @@ A multi-step AI workflow chains together multiple actions where the output of on
 
 1. Click the **+** icon on the Step 3 module
 2. Click **AI by Make** → **Simple Text Prompt** again
-3. Connection: same as Step 2. For Model, select **Medium** (free) — generating a clinical document requires synthesis across multiple inputs. In the Text field, type: `Using the structured medication list and the interaction check below, generate a medication reconciliation table for a hospital admission record. Output one row per medication with columns: Medication Name, Dose, Dose Unit, Frequency, Route, Interaction Flag (true/false), Interaction Detail. Use | as column separator. Medication list:` — then click inside the text field to open the output panel. Under **AI: Extract Medications**, click **Answer** to insert the medication table. Then type ` Interaction check:` and under **AI: Check Interactions**, click **Answer** to insert the interaction results.
+3. Connection: same as Step 2. For Model, select **Medium** (free) — generating a clinical document requires synthesis across multiple inputs. In the Text field, type: `Using the structured medication list and the interaction check below, generate a medication reconciliation in CSV format for a hospital admission record. The first row must be the header: Medication Name,Dose,Dose Unit,Frequency,Route,Interaction Flag,Interaction Detail. Output one row per medication. Use commas as separators. Do not include any text before or after the CSV. Medication list:` — then click inside the text field to open the output panel. Under **AI: Extract Medications**, click **Answer** to insert the medication table. Then type ` Interaction check:` and under **AI: Check Interactions**, click **Answer** to insert the interaction results.
 4. Click **Save**
-5. Right-click the module and select **Rename**. Name it `AI: Generate Reconciliation`
+5. Right-click the module and select **Rename**. Name it `AI: Generate Reconciliation CSV`
 
-**Step 5 — Extract structured fields from reconciliation:**
+**Step 5 — Parse CSV into structured rows:**
 
 1. Click the **+** icon on the Step 4 module
-2. In the left sidebar, click **AI by Make**. Scroll down to **Text**, select **Extract information from text**.
+2. In the left sidebar, click **Built-in tools**. Search for **CSV** and select **Parse CSV**.
 3. In the module settings:
-   - **Connection:** Already set to **Make's AI Provider (default)**
-   - **Model:** Select **Small** (free) — this is a straightforward extraction task
-   - **Text:** Click inside the field to open the output panel on the right. Under **AI: Generate Reconciliation**, click **Answer** to insert the reconciliation text from Step 4
-4. Under **Information**, click **+ Add information** seven times, once for each field. Fill in each item:
-
-| Name | Description | Type |
-|------|------------|------|
-| `medication_name` | The name of the medication | Text |
-| `dose` | The numeric dose value of the medication | Number |
-| `dose_unit` | The unit of the dose (e.g., mg, units, puffs) | Text |
-| `frequency` | How often the medication is taken | Text |
-| `route` | The route of administration | Text |
-| `interaction_flag` | Whether this medication has a drug-drug interaction | Boolean |
-| `interaction_detail` | Description of the interaction and clinical recommendation, if any | Text |
-
-5. Click **Save**
-6. Right-click the module and select **Rename**. Name it `Extract: Reconciliation Fields`
+   - **CSV string:** Click inside the field to open the output panel on the right. Under **AI: Generate Reconciliation CSV**, click **Answer** to insert the CSV text from Step 4
+   - **Delimiter:** Select **Comma**
+   - **CSV contains headers:** Check **Yes**
+4. Click **Save**
+5. Right-click the module and select **Rename**. Name it `Parse: Reconciliation Table`
 
 **Run the workflow:** Click **Run once** (bottom left) to execute all 5 steps in sequence. Compare Step 4's free-text output with Step 5's structured fields — this demonstrates why structured output matters in healthcare workflows.
 
