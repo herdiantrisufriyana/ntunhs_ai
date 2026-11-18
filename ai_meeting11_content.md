@@ -194,21 +194,21 @@ A multi-step AI workflow chains together multiple actions where the output of on
 
 1. Click the **+** icon on the Set variable module
 2. In the left sidebar, click **AI by Make**. Under **Custom prompt**, select **Simple Text Prompt**.
-3. In the module settings: Connection is already set to **Make's AI Provider (default)** — no API key needed. For Model, select **Small** (free) or **Medium** (free). In the Prompt field, type: `Extract the following free-text medication list into a structured table with columns: medication name, dose, frequency, route. Expand all abbreviations into full clinical terms. Input:` — then click inside the prompt field and select the `medication_list` variable from the Step 1 output panel to insert it.
+3. In the module settings: Connection is already set to **Make's AI Provider (default)** — no API key needed. For Model, select **Small** (free) — this is a straightforward extraction task. In the Prompt field, type: `Extract the following free-text medication list into a structured table with columns: medication name, dose, frequency, route. Expand all abbreviations into full clinical terms. Input:` — then click inside the prompt field and select the `medication_list` variable from the Step 1 output panel to insert it.
 4. Click **Save**
 
 **Step 3 — AI checks drug interactions:**
 
 1. Click the **+** icon on the Step 2 module
 2. Click **AI by Make** → **Simple Text Prompt** again
-3. Connection and Model: same as Step 2. Prompt: `Given this medication list, identify any potential drug-drug interactions. For each interaction, state the medications involved, the risk level, and the clinical recommendation.` — then insert the output (Result) from Step 2 into the prompt.
+3. Connection: same as Step 2. For Model, select **Medium** (free) — interaction checking requires more complex reasoning. Prompt: `Given this medication list, identify any potential drug-drug interactions. For each interaction, state the medications involved, the risk level, and the clinical recommendation.` — then insert the output (Result) from Step 2 into the prompt.
 4. Click **Save**
 
 **Step 4 — AI generates reconciliation document:**
 
 1. Click the **+** icon on the Step 3 module
 2. Click **AI by Make** → **Simple Text Prompt** again
-3. Connection and Model: same as Step 2. Prompt: `Using the structured medication list and the interaction check below, generate a clean medication reconciliation document suitable for a hospital admission record. Flag any interactions that require physician review. Medication list:` — insert Step 2 Result — `Interaction check:` — insert Step 3 Result.
+3. Connection: same as Step 2. For Model, select **Medium** (free) — generating a clinical document requires synthesis across multiple inputs. Prompt: `Using the structured medication list and the interaction check below, generate a clean medication reconciliation document suitable for a hospital admission record. Flag any interactions that require physician review. Medication list:` — insert Step 2 Result — `Interaction check:` — insert Step 3 Result.
 4. Click **Save**
 
 **Run the workflow:** Click **Run once** (bottom left) to execute all 4 steps in sequence.
