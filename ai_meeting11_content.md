@@ -178,7 +178,7 @@ A multi-step AI workflow chains together multiple actions where the output of on
 **Setup (5 mins):**
 
 1. Go to [make.com](https://www.make.com) and sign up for a free account (Google login works)
-2. Click **Create a new scenario**
+2. Click **Create a scenario**
 3. You will see the visual canvas where you connect modules (nodes) to build your workflow
 
 **Build the workflow (15 mins):**
