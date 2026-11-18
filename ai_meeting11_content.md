@@ -211,11 +211,30 @@ A multi-step AI workflow chains together multiple actions where the output of on
 
 1. Click the **+** icon on the Step 3 module
 2. Click **AI by Make** → **Simple Text Prompt** again
-3. Connection: same as Step 2. For Model, select **Medium** (free) — generating a clinical document requires synthesis across multiple inputs. In the Text field, type: `Using the structured medication list and the interaction check below, generate a medication reconciliation document for a hospital admission record. Output as a table with columns: Medication Name, Dose, Frequency, Route, Interaction Flag (Yes/No), Interaction Detail. After the table, list any medications that require physician review. Medication list:` — then click inside the text field to open the output panel. Under **AI: Extract Medications**, click **Answer** to insert the medication table. Then type ` Interaction check:` and under **AI: Check Interactions**, click **Answer** to insert the interaction results.
+3. Connection: same as Step 2. For Model, select **Medium** (free) — generating a clinical document requires synthesis across multiple inputs. In the Text field, type: `Using the structured medication list and the interaction check below, generate a clean medication reconciliation document suitable for a hospital admission record. Flag any interactions that require physician review. Medication list:` — then click inside the text field to open the output panel. Under **AI: Extract Medications**, click **Answer** to insert the medication table. Then type ` Interaction check:` and under **AI: Check Interactions**, click **Answer** to insert the interaction results.
 4. Click **Save**
 5. Right-click the module and select **Rename**. Name it `AI: Generate Reconciliation`
 
-**Run the workflow:** Click **Run once** (bottom left) to execute all 4 steps in sequence.
+**Step 5 — Extract structured fields from reconciliation:**
+
+1. Click the **+** icon on the Step 4 module
+2. In the left sidebar, click **AI by Make**. Scroll down to **Text**, select **Extract information from text**.
+3. In the module settings: Connection is **Make's AI Provider (default)**. In the Text field, click to open the output panel. Under **AI: Generate Reconciliation**, click **Answer** to insert the reconciliation text from Step 4.
+4. Under **Information**, click **Add item** to define each field to extract. Add the following items:
+
+| Name | Description | Type |
+|------|------------|------|
+| `medication_name` | The name of the medication | Text |
+| `dose` | The dose of the medication | Text |
+| `frequency` | How often the medication is taken | Text |
+| `route` | The route of administration | Text |
+| `interaction_flag` | Whether this medication has a drug-drug interaction (Yes or No) | Text |
+| `interaction_detail` | Description of the interaction and clinical recommendation, if any | Text |
+
+5. Click **Save**
+6. Right-click the module and select **Rename**. Name it `Extract: Reconciliation Fields`
+
+**Run the workflow:** Click **Run once** (bottom left) to execute all 5 steps in sequence. Compare Step 4's free-text output with Step 5's structured fields — this demonstrates why structured output matters in healthcare workflows.
 
 **Evaluate the output (10 mins):**
 
