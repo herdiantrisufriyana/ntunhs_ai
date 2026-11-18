@@ -169,36 +169,46 @@ A multi-step AI workflow chains together multiple actions where the output of on
 
 ---
 
-## Activity: Design and Test an AI Workflow
+## Activity: Build a Multi-Step AI Workflow with Make
 
-**Task:** Use an LLM to simulate a multi-step clinical workflow by chaining prompts together manually — then discuss how this could be automated.
+**Task:** Use [Make](https://www.make.com) (formerly Integromat) to build a multi-step AI workflow that automates a medication reconciliation task. Make is a free, no-code visual workflow builder with native modules for OpenAI, Claude (Anthropic), and Gemini — use whichever AI you prefer.
 
 **Scenario:** A nurse receives a patient's medication list from a referral hospital. The list is in free-text format with abbreviations and inconsistencies. The goal is to produce a clean, verified medication reconciliation.
 
-**Steps:**
+**Setup (5 mins):**
 
-1. Open ChatGPT, Claude, or Gemini in your browser
-2. **Step 1 — Extract structured data:** Paste the following free-text medication list and ask the AI to extract it into a structured table (medication name, dose, frequency, route):
+1. Go to [make.com](https://www.make.com) and sign up for a free account (Google login works)
+2. Click **Create a new scenario**
+3. You will see the visual canvas where you connect modules (nodes) to build your workflow
 
-   > "pt takes metformin 500 BID, lisinopril 10mg daily, atorvastatin 20 qhs, ASA 81mg daily, and insulin glargine 20u SC qhs. Also on PRN albuterol MDI 2 puffs q4-6h."
+**Build the workflow (15 mins):**
 
-3. **Step 2 — Standardize abbreviations:** Ask the AI to expand all abbreviations (BID, qhs, PRN, SC, MDI, q4-6h) into full clinical terms
-4. **Step 3 — Check for potential interactions:** Ask the AI to identify any potential drug-drug interactions in this medication list
-5. **Step 4 — Generate a reconciliation summary:** Ask the AI to create a clean medication reconciliation document suitable for a hospital admission record
-6. **Step 5 — Evaluate the workflow:**
-   - Did the AI correctly identify all medications?
-   - Were the abbreviation expansions accurate?
+Add the following modules to your scenario by clicking the **+** button and searching for each:
+
+| Step | Module | Configuration |
+|------|--------|--------------|
+| 1 | **Set variable** (Tools) | Set a text variable containing the free-text medication list: "pt takes metformin 500 BID, lisinopril 10mg daily, atorvastatin 20 qhs, ASA 81mg daily, and insulin glargine 20u SC qhs. Also on PRN albuterol MDI 2 puffs q4-6h." |
+| 2 | **OpenAI / Claude / Gemini** (choose your AI) | Prompt: "Extract the following free-text medication list into a structured table with columns: medication name, dose, frequency, route. Expand all abbreviations into full clinical terms. Input: {{variable from Step 1}}" |
+| 3 | **OpenAI / Claude / Gemini** (same or different AI) | Prompt: "Given this medication list: {{output from Step 2}}, identify any potential drug-drug interactions. For each interaction, state the medications involved, the risk level, and the clinical recommendation." |
+| 4 | **OpenAI / Claude / Gemini** (same or different AI) | Prompt: "Using the structured medication list: {{output from Step 2}} and the interaction check: {{output from Step 3}}, generate a clean medication reconciliation document suitable for a hospital admission record. Flag any interactions that require physician review." |
+
+Connect the modules in sequence (Step 1 → Step 2 → Step 3 → Step 4). Click **Run once** to execute the entire workflow.
+
+**Evaluate the output (10 mins):**
+
+5. Review the final medication reconciliation document:
+   - Did the AI correctly identify all 6 medications?
+   - Were the abbreviation expansions accurate? (BID = twice daily, qhs = every night at bedtime, PRN = as needed, SC = subcutaneous, MDI = metered-dose inhaler, q4-6h = every 4-6 hours)
    - Were the drug interaction checks reliable? (Verify against a reference like Medscape or Lexicomp)
-   - Would you trust this workflow in practice? What safeguards would you add?
+   - Did the reconciliation document flag interactions appropriately?
 
-7. **Design exercise:** Sketch a workflow diagram (on paper or whiteboard) showing how this 4-step process could be automated using a no-code tool like Zapier or Make. Identify:
-   - Where would you insert human review checkpoints?
-   - What triggers the workflow (e.g., receiving a referral document)?
-   - What happens if the AI fails at any step?
+6. Discuss with the class:
+   - What would you change to make this workflow safe for real use?
+   - Where would you add a human review checkpoint? (Hint: before the final reconciliation document is sent to the admission record)
+   - What happens if the AI hallucinates an interaction that does not exist?
+   - How does the Make free tier (1,000 operations/month, 2 active scenarios) affect real-world deployment?
 
-**Discussion:**
-- Compare your workflow diagrams across the class — what common design choices emerged?
-- What is the minimum viable safeguard to make this workflow usable in a real hospital?
+> **Note:** The free Make account provides 1,000 operations per month. This 4-step workflow uses ~4 operations per run, so you have ~250 test runs — more than enough for this exercise.
 
 ---
 
