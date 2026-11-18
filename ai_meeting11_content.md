@@ -211,7 +211,7 @@ A multi-step AI workflow chains together multiple actions where the output of on
 
 1. Click the **+** icon on the Step 3 module
 2. Click **AI by Make** → **Simple Text Prompt** again
-3. Connection: same as Step 2. For Model, select **Medium** (free) — generating a clinical document requires synthesis across multiple inputs. In the Text field, type: `Using the structured medication list and the interaction check below, generate a clean medication reconciliation document suitable for a hospital admission record. Flag any interactions that require physician review. Medication list:` — then click inside the text field to open the output panel. Under **AI: Extract Medications**, click **Answer** to insert the medication table. Then type ` Interaction check:` and under **AI: Check Interactions**, click **Answer** to insert the interaction results.
+3. Connection: same as Step 2. For Model, select **Medium** (free) — generating a clinical document requires synthesis across multiple inputs. In the Text field, type: `Using the structured medication list and the interaction check below, generate a medication reconciliation table for a hospital admission record. Output one row per medication with columns: Medication Name, Dose, Dose Unit, Frequency, Route, Interaction Flag (true/false), Interaction Detail. Use | as column separator. Medication list:` — then click inside the text field to open the output panel. Under **AI: Extract Medications**, click **Answer** to insert the medication table. Then type ` Interaction check:` and under **AI: Check Interactions**, click **Answer** to insert the interaction results.
 4. Click **Save**
 5. Right-click the module and select **Rename**. Name it `AI: Generate Reconciliation`
 
