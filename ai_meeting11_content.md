@@ -187,7 +187,7 @@ Add the following modules to your scenario by clicking the **+** button and sear
 
 | Step | Module | Configuration |
 |------|--------|--------------|
-| 1 | **Set variable** (Tools) | Set a text variable containing the free-text medication list: "pt takes metformin 500 BID, lisinopril 10mg daily, atorvastatin 20 qhs, ASA 81mg daily, and insulin glargine 20u SC qhs. Also on PRN albuterol MDI 2 puffs q4-6h." |
+| 1 | **Set variable** (Tools) | Variable name: `medication_list`. Variable value: `pt takes metformin 500 BID, lisinopril 10mg daily, atorvastatin 20 qhs, ASA 81mg daily, and insulin glargine 20u SC qhs. Also on PRN albuterol MDI 2 puffs q4-6h.` Click **Save**. |
 | 2 | **OpenAI / Claude / Gemini** (choose your AI) | Prompt: "Extract the following free-text medication list into a structured table with columns: medication name, dose, frequency, route. Expand all abbreviations into full clinical terms. Input: {{variable from Step 1}}" |
 | 3 | **OpenAI / Claude / Gemini** (same or different AI) | Prompt: "Given this medication list: {{output from Step 2}}, identify any potential drug-drug interactions. For each interaction, state the medications involved, the risk level, and the clinical recommendation." |
 | 4 | **OpenAI / Claude / Gemini** (same or different AI) | Prompt: "Using the structured medication list: {{output from Step 2}} and the interaction check: {{output from Step 3}}, generate a clean medication reconciliation document suitable for a hospital admission record. Flag any interactions that require physician review." |
