@@ -183,16 +183,35 @@ A multi-step AI workflow chains together multiple actions where the output of on
 
 **Build the workflow (15 mins):**
 
-Add the following modules to your scenario by clicking the **+** button and searching for each:
+**Step 1 — Set variable:**
 
-| Step | Module | Configuration |
-|------|--------|--------------|
-| 1 | **Set variable** (Tools) | Variable name: `medication_list`. Variable value: `pt takes metformin 500 BID, lisinopril 10mg daily, atorvastatin 20 qhs, ASA 81mg daily, and insulin glargine 20u SC qhs. Also on PRN albuterol MDI 2 puffs q4-6h.` Click **Save**. |
-| 2 | **OpenAI / Claude / Gemini** (choose your AI) | Prompt: "Extract the following free-text medication list into a structured table with columns: medication name, dose, frequency, route. Expand all abbreviations into full clinical terms. Input: {{variable from Step 1}}" |
-| 3 | **OpenAI / Claude / Gemini** (same or different AI) | Prompt: "Given this medication list: {{output from Step 2}}, identify any potential drug-drug interactions. For each interaction, state the medications involved, the risk level, and the clinical recommendation." |
-| 4 | **OpenAI / Claude / Gemini** (same or different AI) | Prompt: "Using the structured medication list: {{output from Step 2}} and the interaction check: {{output from Step 3}}, generate a clean medication reconciliation document suitable for a hospital admission record. Flag any interactions that require physician review." |
+1. Click the **+** icon on the empty canvas
+2. In the left sidebar, click **Built-in tools**. Select **Set variable**.
+3. In the module settings: Variable name: `medication_list`. Variable value: `pt takes metformin 500 BID, lisinopril 10mg daily, atorvastatin 20 qhs, ASA 81mg daily, and insulin glargine 20u SC qhs. Also on PRN albuterol MDI 2 puffs q4-6h.`
+4. Click **Save**
 
-Connect the modules in sequence (Step 1 → Step 2 → Step 3 → Step 4). Click **Run once** to execute the entire workflow.
+**Step 2 — AI extracts and standardizes medications:**
+
+1. Click the **+** icon on the Set variable module
+2. In the left sidebar, click **AI by Make**. Under **Custom prompt**, select **Simple Text Prompt**.
+3. In the module settings: Connection is already set to **Make's AI Provider (default)** — no API key needed. For Model, select **Small** (free) or **Medium** (free). In the Prompt field, type: `Extract the following free-text medication list into a structured table with columns: medication name, dose, frequency, route. Expand all abbreviations into full clinical terms. Input:` — then click inside the prompt field and select the `medication_list` variable from the Step 1 output panel to insert it.
+4. Click **Save**
+
+**Step 3 — AI checks drug interactions:**
+
+1. Click the **+** icon on the Step 2 module
+2. Click **AI by Make** → **Simple Text Prompt** again
+3. Connection and Model: same as Step 2. Prompt: `Given this medication list, identify any potential drug-drug interactions. For each interaction, state the medications involved, the risk level, and the clinical recommendation.` — then insert the output (Result) from Step 2 into the prompt.
+4. Click **Save**
+
+**Step 4 — AI generates reconciliation document:**
+
+1. Click the **+** icon on the Step 3 module
+2. Click **AI by Make** → **Simple Text Prompt** again
+3. Connection and Model: same as Step 2. Prompt: `Using the structured medication list and the interaction check below, generate a clean medication reconciliation document suitable for a hospital admission record. Flag any interactions that require physician review. Medication list:` — insert Step 2 Result — `Interaction check:` — insert Step 3 Result.
+4. Click **Save**
+
+**Run the workflow:** Click **Run once** (bottom left) to execute all 4 steps in sequence.
 
 **Evaluate the output (10 mins):**
 
