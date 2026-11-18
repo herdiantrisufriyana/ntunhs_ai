@@ -223,15 +223,16 @@ A multi-step AI workflow chains together multiple actions where the output of on
    - **Connection:** Already set to **Make's AI Provider (default)**
    - **Model:** Select **Small** (free) — this is a straightforward extraction task
    - **Text:** Click inside the field to open the output panel on the right. Under **AI: Generate Reconciliation**, click **Answer** to insert the reconciliation text from Step 4
-4. Under **Information**, click **+ Add information** six times, once for each field. Fill in each item:
+4. Under **Information**, click **+ Add information** seven times, once for each field. Fill in each item:
 
 | Name | Description | Type |
 |------|------------|------|
 | `medication_name` | The name of the medication | Text |
-| `dose` | The dose of the medication | Text |
+| `dose` | The numeric dose value of the medication | Number |
+| `dose_unit` | The unit of the dose (e.g., mg, units, puffs) | Text |
 | `frequency` | How often the medication is taken | Text |
 | `route` | The route of administration | Text |
-| `interaction_flag` | Whether this medication has a drug-drug interaction (Yes or No) | Text |
+| `interaction_flag` | Whether this medication has a drug-drug interaction | Boolean |
 | `interaction_detail` | Description of the interaction and clinical recommendation, if any | Text |
 
 5. Click **Save**
